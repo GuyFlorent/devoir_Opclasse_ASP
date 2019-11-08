@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Auteurs</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Nom Auteur</th>
+            <th>Id_Auteur</th>
+        </tr>
+        @foreach (devoir_Op.Models.Auteur auteur in ViewData["auteurs"] as List<devoir_Op.Models.Auteur>)
+        {
+    <tr>
+        <td>@auteur.nom_auteur</td>
+        <td>@auteur.IdAuteur</td>
+
+    </tr>
+        }
+    </table>
+</body>
+</html>
