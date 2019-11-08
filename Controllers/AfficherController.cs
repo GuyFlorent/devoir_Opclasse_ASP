@@ -40,26 +40,33 @@ namespace devoir_Op.Controllers
         {
             Livres livres = new Livres();
             var livre_ID = (livres.listeLivre().ToList()).FirstOrDefault(f => f.Id_Livre == id);
-            
-            Empruntes empruntes = new Empruntes();
-            var emprunt = empruntes.empruntes().ToList().FirstOrDefault(f => f.Titre == livre_ID.Titre);
-            if(emprunt != null)
+            if (livre_ID != null)
             {
-                ViewData["livres_ID"] = livre_ID.Titre;
-                ViewData["livre_date"] = livre_ID.Date_parution;
-                ViewData["emprunteur"] = emprunt.client;
-                return View("Livre");
-                
+
+
+                Empruntes empruntes = new Empruntes();
+                var emprunt = empruntes.empruntes().ToList().FirstOrDefault(f => f.Titre == livre_ID.Titre);
+                if (emprunt != null)
+                {
+                    ViewData["livres_ID"] = livre_ID.Titre;
+                    ViewData["livre_date"] = livre_ID.Date_parution;
+                    ViewData["emprunteur"] = emprunt.client;
+                    return View("Livre");
+
+                }
+                else
+                {
+
+                    ViewData["livres_ID"] = livre_ID.Titre;
+                    ViewData["livre_date"] = livre_ID.Date_parution;
+                    ViewData["emprunteur"] = "Livre non emprunter";
+                    return View("Livre");
+                }
             }
             else
             {
-
-                ViewData["livres_ID"] = livre_ID.Titre;
-                ViewData["livre_date"] = livre_ID.Date_parution;
-                ViewData["emprunteur"] = "Livre non emprunter";
-                return View("Livre");
+                return = null;  //a complété 
             }
-            
         }
     }
 }
