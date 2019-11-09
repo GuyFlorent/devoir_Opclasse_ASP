@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Auteur</title>
+    <title>Livre</title>
 </head>
 <body>
     <table>
@@ -16,7 +16,7 @@
             <th>Titres des livres de l'auteur</th>
 
         </tr>
-        @foreach (devoir_Op.Models.Livre livre in ViewData["Livres_Auteur"] as List<devoir_Op.Models.Livre>)
+        @foreach (devoir_Op.Models.Livre livre in ViewData["Livres_Recherche"] as List<devoir_Op.Models.Livre>)
         {
             <tr>
                 <td>@livre.Titre</td>

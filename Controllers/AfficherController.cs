@@ -26,14 +26,20 @@ namespace devoir_Op.Controllers
            
         }
 
-       public ActionResult Auteur(int id)
+       public ActionResult Auteur(int? id)
         {
             Auteurs aut = new Auteurs();
             var t = (aut.auteurs().ToList()).FirstOrDefault(f => f.IdAuteur == id);
-            Livres livres = new Livres();
-            ViewData["Livres_Auteur"] = livres.listeLivre().Where(f => f.auteur == t.nom_auteur).ToList();
-                
-            return View("Auteur");
+            if (t != null)
+            {
+                Livres livres = new Livres();
+                ViewData["Livres_Auteur"] = livres.listeLivre().Where(f => f.auteur == t.nom_auteur).ToList();
+
+                return View("Auteur");
+            } else
+            {
+                return View("NonTrouver");
+            }
         }
 
         public ActionResult Livre(int id)
@@ -65,8 +71,10 @@ namespace devoir_Op.Controllers
             }
             else
             {
-                return = null;  //a complété 
+                return  View("NonTrouver"); 
             }
         }
-    }
+
+       
+        }
 }
